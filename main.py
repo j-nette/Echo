@@ -9,6 +9,7 @@ from gtts import gTTS
 # For data 
 import os
 
+# AI
 class Bot():
     def __init__(self, name):
         print(" ~ Starting up", name,"~ ")
@@ -28,16 +29,13 @@ class Bot():
             print("Could not request results from Google Speech Recognition; {0}".format(e)) 
 
     def text_to_speech(self, text):
-        print(self.name, ":", text)
+        print(self.name, ": ", text)
         speaker = gTTS(text = text, lang = "en", slow = False)
         # Store, open, and cleanup temporary audio file
         speaker.save("res.mp3") 
         os.system('start res.mp3')  
         os.remove("res.mp3")
 
-    def wake_up(self, text):
-        return True if self.name in text.lower() else False
-    
 
 # Execute the AI
 if __name__ == "__main__":
@@ -45,21 +43,23 @@ if __name__ == "__main__":
     run = True
     conversation = False
     res = ""
+    ai.text = ""
 
     while run is True:
         ai.speech_to_text()
         
-        if "Hi Echo" in ai.text:
+        if "hi Echo" in ai.text:
             res = "Hello! What can I do for you today?"
+            ai.text_to_speech(res)
             conversation = True
-        elif "Shutdown Echo" in ai.text:
-            print(f" ~ Closing down {ai.name} ~ ")
+        #elif "Shutdown Echo" in ai.text:
+            #print(f" ~ Closing down {ai.name} ~ ")
 
         while conversation is True:
-            if "Bye Echo" in ai.text:
+            ai.speech_to_text()
+            if "goodbye Echo" in ai.text:
                 res = "Have a good one"
                 conversation = False
             else:
                 res = "Sorry, I couldn't quite get that. Come again?"
-        print("Echo: ", res)
-        ai.text_to_speech(res)
+            ai.text_to_speech(res)
