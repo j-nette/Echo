@@ -1,9 +1,8 @@
 categories:
-- conversation
+- basic
 conversations:
 - - How are you?
   - I'm just a computer program, but I'm here to assist you. How can I help?
-  - I don't have feelings, but I'm ready to chat and assist you with anything.
 - - Thank you
   - No problem.
   - Here to help. 

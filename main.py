@@ -13,17 +13,17 @@ import datetime
 
 # Chatterbot setup
 echo = ChatBot(
-    "MyChatBot", 
+    "Echo", 
     read_only=True,
     logic_adapters=[
         {
             'import_path': 'chatterbot.logic.BestMatch',
-            'default_response': 'I\'m sorry I coudln\'t quite catch that.',
+            'default_response': 'I\'m sorry I couldn\'t quite catch that.',
             'maximum_similarity_threshold': 0.90
         }
     ])
 
-# Training Echo
+# Training AI
 trainer = ct(echo)
 trainer.train("./data/corpus/")
 
@@ -33,6 +33,7 @@ class Bot():
     def __init__(self, name):
         print(" ~ Starting up", name,"~ ")
         self.name = name
+        self.text = ""
 
     def speech_to_text(self):
         recognizer = sr.Recognizer()
@@ -45,7 +46,7 @@ class Bot():
         except sr.UnknownValueError:
             print("Google Speech Recognition could not understand audio.")
         except sr.RequestError as e:
-            print("Could not request responseults from Google Speech Recognition; {0}".format(e)) 
+            print("Could not request results from Google Speech Recognition; {0}".format(e)) 
 
     def text_to_speech(self, text):
         print(self.name, ": ", text)
@@ -64,8 +65,6 @@ if __name__ == "__main__":
     ai = Bot(name = "Echo")
     run = True
     conversation = False
-    response = ""
-    ai.text = ""
 
     while run is True:
         ai.speech_to_text()
@@ -86,6 +85,6 @@ if __name__ == "__main__":
             else:
                 response = echo.get_response(ai.text)
             #elif "Shutdown Echo" in ai.text:
-                #print(f" ~ Closing down {ai.name} ~ ")
+                #print(f" ~ Shutting down {ai.name} ~ ")
                 #run = False
             ai.text_to_speech(response)
