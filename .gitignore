@@ -9,3 +9,6 @@ __pycache__
 
 #ignore tempCodeRunnerFile
 *tempCodeRunnerFile.py
+
+#ignore db.sqlite3
+*db.sqlite3
