@@ -1,0 +1,5 @@
+# ignore all .env files
+*.env
+
+# ignore goslate folder
+goslate/
