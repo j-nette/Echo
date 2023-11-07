@@ -3,3 +3,9 @@
 
 # ignore goslate folder
 goslate/
+
+#ignore __pycache__ folder
+__pycache__
+
+#ignore tempCodeRunnerFile
+*tempCodeRunnerFile.py
