@@ -12,3 +12,6 @@ __pycache__
 
 #ignore db.sqlite3
 *db.sqlite3
+
+#ignore .mp3 files
+*.mp3
