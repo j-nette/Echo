@@ -1,6 +1,4 @@
-# For bot
-from chatterbot import ChatBot
-from chatterbot.trainers import ChatterBotCorpusTrainer as ct
+# Run me :)
 
 # Import functions
 from data.files.actions import *
@@ -25,7 +23,6 @@ if __name__ == "__main__":
                 response = "Have a good one!"
                 conversation = False
             elif "time" in ai.text:
-                currentTime = ai.action_time()
                 currentTime = actions.time()
                 response = f"It is currently {currentTime}"
             else:

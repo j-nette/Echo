@@ -18,7 +18,7 @@ from mutagen.mp3 import MP3
 
 def get_length():
     audio = MP3("./data/files/response.mp3")
-    length = audio.info.length + 2 # extra 2 seconds for loading the file
+    length = audio.info.length + 2 # extra 2 seconds to load the file
     #print(length)
     return length
 
