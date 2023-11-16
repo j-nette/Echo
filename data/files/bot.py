@@ -55,10 +55,13 @@ class Bot():
         try:
             self.text = recognizer.recognize_google(audio)
             print("Me :", self.text)
+            return True
         except sr.UnknownValueError:
             print("Google Speech Recognition could not understand audio.")
+            return False
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition; {0}".format(e)) 
+            return False
 
     def text_to_speech(self, text: str):
         print(self.name, ": ", text)

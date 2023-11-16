@@ -18,16 +18,18 @@ if __name__ == "__main__":
             conversation = True
 
         while conversation is True:
-            ai.speech_to_text()
-            if "goodbye Echo" in ai.text:
-                response = "Have a good one!"
-                conversation = False
-            elif "time" in ai.text:
-                currentTime = actions.time()
-                response = f"It is currently {currentTime}"  
+            if ai.speech_to_text() is True:
+                if "goodbye Echo" in ai.text:
+                    response = "Have a good one!"
+                    conversation = False
+                elif "time" in ai.text:
+                    currentTime = actions.time()
+                    response = f"It is currently {currentTime}"  
+                else:
+                    response = str(chatBot.get_response(ai.text))
+                #elif "Shutdown Echo" in ai.text:
+                    #print(f" ~ Shutting down {ai.name} ~ ")
+                    #run = False
             else:
-                response = str(chatBot.get_response(ai.text))
-            #elif "Shutdown Echo" in ai.text:
-                #print(f" ~ Shutting down {ai.name} ~ ")
-                #run = False
+                response = "I couldn't quite catch that."
             ai.text_to_speech(response)
