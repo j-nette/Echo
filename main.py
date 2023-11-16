@@ -24,9 +24,9 @@ if __name__ == "__main__":
                 conversation = False
             elif "time" in ai.text:
                 currentTime = actions.time()
-                response = f"It is currently {currentTime}"
+                response = f"It is currently {currentTime}"  
             else:
-                response = chatBot.get_response(ai.text)
+                response = str(chatBot.get_response(ai.text))
             #elif "Shutdown Echo" in ai.text:
                 #print(f" ~ Shutting down {ai.name} ~ ")
                 #run = False

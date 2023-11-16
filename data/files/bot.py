@@ -14,11 +14,13 @@ from gtts import gTTS
 import os
 
 # For Audio File
-from mutagen.mp3 import MP3
+import subprocess
+
+audio_file_path = "./data/files/response.mp3"
 
 def get_length():
-    audio = MP3("./data/files/response.mp3")
-    length = audio.info.length + 2 # extra 2 seconds to load the file
+    audio = MP3(audio_file_path)
+    length = audio.info.length + 1 # extra second to load the file
     #print(length)
     return length
 
@@ -29,7 +31,7 @@ chatBot = ChatBot(
     logic_adapters=[
         {
             'import_path': 'chatterbot.logic.BestMatch',
-            'default_response': 'I\'m sorry I don\'t quite understand.',
+            'default_response': 'I\'m sorry I don\'t understand.',
             'maximum_similarity_threshold': 0.90
         }
     ])
@@ -60,8 +62,13 @@ class Bot():
     def text_to_speech(self, text: str):
         print(self.name, ": ", text)
         speaker = gTTS(text = text, lang = "en", slow = False)
+
         # Store, open, and cleanup temporary audio file
-        speaker.save("./data/files/response.mp3") 
-        os.system("start ./data/files/response.mp3")  
+        speaker.save(audio_file_path) 
+        audio_process = subprocess.Popen(["start", audio_file_path], shell=True)
         time.sleep(get_length()) # delay to avoid cleaning the file up before it is done playing
-        os.remove("./data/files/response.mp3")
+        if audio_process.poll() is None:
+            audio_process.terminate()
+            audio_process.wait()
+
+        os.remove(audio_file_path)
