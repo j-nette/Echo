@@ -14,6 +14,7 @@ from gtts import gTTS
 import os
 
 # For Audio File
+from mutagen.mp3 import MP3
 import subprocess
 
 audio_file_path = "./data/files/response.mp3"
