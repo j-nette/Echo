@@ -17,12 +17,11 @@ import os
 from mutagen.mp3 import MP3
 import subprocess
 
-audio_file_path = "./data/files/response.mp3"
+audio_file_path = "./software/data/files/response.mp3"
 
 def get_length():
     audio = MP3(audio_file_path)
-    length = audio.info.length + 1 # extra second to load the file
-    #print(length)
+    length = audio.info.length + 1 # extra second as a buffer (waiting for file to load)
     return length
 
 # Chatterbot setup
@@ -39,7 +38,7 @@ chatBot = ChatBot(
 
 # Training Echo
 trainer = ct(chatBot)
-trainer.train("./data/corpus/")
+trainer.train("./software/data/corpus/")
 
 class Bot():
     def __init__(self, name):

@@ -1,8 +1,8 @@
 # Run me :)
 
 # Import functions
-from data.files.actions import *
-from data.files.bot import *
+from software.data.files.actions import *
+from software.data.files.bot import *
 
 # Execute the AI
 if __name__ == "__main__":
@@ -25,6 +25,9 @@ if __name__ == "__main__":
                 elif "time" in ai.text:
                     currentTime = actions.time()
                     response = f"It is currently {currentTime}"  
+                elif "roll a die" in ai.text:
+                    roll = actions.rollDie()
+                    response = f"You rolled a {roll}"
                 else:
                     response = str(chatBot.get_response(ai.text))
                 #elif "Shutdown Echo" in ai.text:
