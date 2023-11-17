@@ -38,6 +38,9 @@ void loop(){
       int action = actionString.toInt();
       int data = dataString.toInt();
 
+      Serial.println(action);
+      Serial.println(data);
+
       getAction(action, data); 
     }
   }

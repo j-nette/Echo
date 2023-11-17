@@ -11,19 +11,20 @@ arduinoData = serial.Serial(port='COM6', baudrate=9600, timeout=.1)
 
 def write_read(x: str): 
 	arduinoData.write(bytes(x, 'utf-8')) 
-	time.sleep(0.05) 
-	data = arduinoData.readline() 
-	return data 
+	#data = arduinoData.readline() 
+	#return data 
+
 
 class actions():
     def time():
         return datetime.datetime.now().time().strftime('%H:%M')
     def rollDie():
+        roll = random.randint(1, 6)
+        write_read("1," + str(roll))
+        start_time = time.time() 
         while True:
-            roll = random.randint(1, 6)
-            done = write_read("1," + str(roll))
-            if done:
-                return roll
-            else: # waiting for the code on the Arduino side to finish
-                time.sleep(0.1)
-    
+            data = arduinoData.readline().decode().strip()  
+            if data:  
+                return data
+            elif time.time() - start_time > 5:  
+                return None  # timeout occured

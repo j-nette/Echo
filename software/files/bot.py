@@ -17,7 +17,7 @@ import os
 from mutagen.mp3 import MP3
 import subprocess
 
-audio_file_path = "./software/data/files/response.mp3"
+audio_file_path = "./software/files/response.mp3"
 
 def get_length():
     audio = MP3(audio_file_path)
